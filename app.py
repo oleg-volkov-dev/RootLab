@@ -102,7 +102,7 @@ if st.button("Solve", type="primary", use_container_width=True):
             results.append({
                 "Method":     name,
                 "Root":       root_str,
-                "Iterations": res["iterations"],
+                "Iterations": str(res["iterations"]),
                 "Time (ms)":  f"{res['time'] * 1000:.4f}",
                 "Converged":  "Yes" if res["converged"] else "No",
             })
