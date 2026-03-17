@@ -7,6 +7,7 @@ from methods.muller import muller
 from methods.bisection import bisection
 from methods.false_position import false_position
 from methods.fixed_point import fixed_point
+from methods.newton import newton
 
 st.set_page_config(page_title="RootLab", layout="centered")
 
@@ -63,7 +64,7 @@ if st.button("Solve", type="primary", use_container_width=True):
         ("Bisection",            lambda: bisection(f, x0, x2)),
         ("False Position",       lambda: false_position(f, x0, x2)),
         ("Fixed-Point Iteration", lambda: fixed_point(g, x0)),
-        ("Newton",               None),
+        ("Newton",               lambda: newton(f, x0)),
         ("Secant",               None),
         ("Müller",               lambda: muller(f, x0, x1, x2)),
     ]
