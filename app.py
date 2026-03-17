@@ -6,6 +6,7 @@ import matplotlib.pyplot as plt
 from methods.muller import muller
 from methods.bisection import bisection
 from methods.false_position import false_position
+from methods.fixed_point import fixed_point
 
 st.set_page_config(page_title="RootLab", layout="centered")
 
@@ -16,6 +17,10 @@ st.caption("Numerical Root-Finding Dashboard")
 st.subheader("Function")
 expr = st.text_input("f(x) =", value="x**3 - x - 2",
                      help="Use Python syntax: x**2, math.sin(x), math.exp(x), etc.")
+
+st.subheader("Fixed-Point Iteration")
+g_expr = st.text_input("g(x) =", value="(x + 2) ** (1/3)",
+                        help="Rewrite f(x)=0 as x=g(x). Used only by Fixed-Point Iteration.")
 
 st.subheader("Initial Points")
 col1, col2, col3 = st.columns(3)
@@ -45,13 +50,19 @@ if st.button("Solve", type="primary", use_container_width=True):
         st.error(f"Invalid function: {e}")
         st.stop()
 
+    try:
+        g = make_func(g_expr)
+    except Exception as e:
+        st.error(f"Invalid g(x): {e}")
+        st.stop()
+
     results = []
 
     # ── Run methods (add others here as implemented) ──────────────────────────
     methods = [
         ("Bisection",            lambda: bisection(f, x0, x2)),
         ("False Position",       lambda: false_position(f, x0, x2)),
-        ("Fixed-Point Iteration",None),
+        ("Fixed-Point Iteration", lambda: fixed_point(g, x0)),
         ("Newton",               None),
         ("Secant",               None),
         ("Müller",               lambda: muller(f, x0, x1, x2)),
