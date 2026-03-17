@@ -5,6 +5,7 @@ import matplotlib.pyplot as plt
 
 from methods.muller import muller
 from methods.bisection import bisection
+from methods.false_position import false_position
 
 st.set_page_config(page_title="RootLab", layout="centered")
 
@@ -49,7 +50,7 @@ if st.button("Solve", type="primary", use_container_width=True):
     # ── Run methods (add others here as implemented) ──────────────────────────
     methods = [
         ("Bisection",            lambda: bisection(f, x0, x2)),
-        ("False Position",       None),
+        ("False Position",       lambda: false_position(f, x0, x2)),
         ("Fixed-Point Iteration",None),
         ("Newton",               None),
         ("Secant",               None),
