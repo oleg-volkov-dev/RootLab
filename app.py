@@ -4,6 +4,7 @@ import streamlit as st
 import matplotlib.pyplot as plt
 
 from methods.muller import muller
+from methods.bisection import bisection
 
 st.set_page_config(page_title="RootLab", layout="centered")
 
@@ -47,7 +48,7 @@ if st.button("Solve", type="primary", use_container_width=True):
 
     # ── Run methods (add others here as implemented) ──────────────────────────
     methods = [
-        ("Bisection",            None),
+        ("Bisection",            lambda: bisection(f, x0, x2)),
         ("False Position",       None),
         ("Fixed-Point Iteration",None),
         ("Newton",               None),
