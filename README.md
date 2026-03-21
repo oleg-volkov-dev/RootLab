@@ -13,6 +13,8 @@ Enter any function `f(x)` and a set of initial points, then hit Solve. The dashb
 
 Fixed-Point Iteration requires you to supply a `g(x)` manually (rewriting `f(x) = 0` as `x = g(x)`); the other five methods run automatically.
 
+## Dashboard Example:
+
 ![Dashboard](Dashboard_pic.png)
 
 ## Running
